@@ -1,5 +1,12 @@
+from dotenv import load_dotenv
+import os
 import mysql.connector
 from mysql.connector import Error
+
+load_dotenv()
+
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
 
 def update_movie(movie_id, new_name):
     """Update the movie title in the movie table."""
@@ -15,8 +22,8 @@ def update_movie(movie_id, new_name):
         with mysql.connector.connect(
             host="localhost",
             database="movies",
-            user="root",
-            password=" " #Add password
+            user=db_user,
+            password=db_password
         ) as conn:
             with conn.cursor() as cursor:
                 cursor.execute(query, data)

@@ -1,4 +1,11 @@
+from dotenv import load_dotenv
+import os
 import mysql.connector
+
+load_dotenv()
+
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
 
 def query_table():
     """Fetches and displays all records from the movies table."""
@@ -7,8 +14,8 @@ def query_table():
         conn = mysql.connector.connect(
             host="localhost",
             database="movies",
-            user="root",
-            password=" " # Add Password
+            user=db_user,
+            password=db_password
         )
         cursor = conn.cursor()
 

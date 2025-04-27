@@ -1,11 +1,18 @@
+from dotenv import load_dotenv
+import os
 import mysql.connector
+
+load_dotenv()
+
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
 
 # Connect to MySQL Server
 conn = mysql.connector.connect(
     host="localhost",
     database="movies",
-    user="root",
-    password=" "  # Add your password
+    user=db_user,
+    password=db_password
 )
 
 def insert_books(book_list):
